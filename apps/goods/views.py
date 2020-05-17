@@ -14,6 +14,8 @@ from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import GoodsFilter
 
+from rest_framework.authentication import TokenAuthentication
+
 # Create your views here.
 
 
@@ -47,6 +49,8 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     filter_class = GoodsFilter  # 过滤
     search_fields = ['name', 'goods_brief']  # 搜索
     ordering_fields = ['sold_num', 'shop_price']  # 排序
+
+    authentication_classes = (TokenAuthentication, )
 
 
 class GoodsCategoryListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):

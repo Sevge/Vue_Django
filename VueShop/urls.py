@@ -27,6 +27,8 @@ from rest_framework.routers import DefaultRouter
 from goods.views import GoodsListViewSet, GoodsCategoryListViewSet
 
 from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
+
 
 router = DefaultRouter()
 # 配置goods的router
@@ -50,6 +52,7 @@ urlpatterns = [
 
        re_path(r'^api-auth/', include('rest_framework.urls')),
        re_path(r'^api-token-auth/', views.obtain_auth_token),
+       re_path(r'^login/', obtain_jwt_token),
        path('docs/', include_docs_urls('docs')),
 
 ]
